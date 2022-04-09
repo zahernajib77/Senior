@@ -37,211 +37,237 @@ class _InsideItemState extends State<InsideItem> {
                   Stack(
                     children: [
 
-                      
-                      Column(
-                        children: [
-                          Container(
-                              height: 250,
-                              padding: const EdgeInsets.all(0),
-                              margin: const EdgeInsets.only(top: 50),
-                              width: MediaQuery.of(context).size.width,
-                              color: Colors.white,
-                              child: PageView(
-                                scrollDirection: Axis.horizontal,
-                                children: <Widget>[
-                                  MyParts(
-                                      "https://cdn.pixabay.com/photo/2021/02/05/21/04/tail-lights-5985913__340.jpg",
-                                      ""),
-                                  MyParts(
-                                      "https://cdn.pixabay.com/photo/2021/01/14/03/52/gold-5915713__340.png",
-                                      ""),
-                                  MyParts(
-                                      "https://cdn.pixabay.com/photo/2015/03/18/19/42/auto-679874__340.jpg",
-                                      ""),
-                                ],
-                              )),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(left: 15, right: 15),
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Item name',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Text(
-                                  '12',
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 15,
-                          ),
-                          Container(
-                            padding: const EdgeInsets.only(left: 15, right: 15),
-                            width: MediaQuery.of(context).size.width,
-                            color: Colors.white,
-                            height: 150,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'Description',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  'hkasgf balhbf kshdkfvbh dvjn djfs jnkljfvh ndf;kljv nsk;l hjdfk bgxjlbh kjdd dgbs dfkjbn ',
-                                  style: TextStyle(fontSize: 16),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Container(
-                              margin:
-                                  const EdgeInsets.only(left: 15, right: 15),
-                              width: MediaQuery.of(context).size.width - 30,
-                              padding: const EdgeInsets.all(10),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(5),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.5),
-                                    spreadRadius: 3,
-                                    blurRadius: 4,
-                                    offset: Offset(
-                                        1, 2), // changes position of shadow
-                                  ),
-                                ],
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                      StreamBuilder<QuerySnapshot>(
+                          stream:  FirebaseFirestore.instance
+                              .collection("Items") .where("uid",
+                              isEqualTo: "gtXY6LJuFeFwT0301SjC"
+                              // AutoParts.preferences!
+                              //     .getString(AutoParts.userUID)
+                          )
+                              .snapshots(),
+                          builder: (context, snapshot) {
+                            if (!snapshot.hasData) return circularProgress();
+                            return ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: snapshot.data!.docs.length,
+                                itemBuilder: (context, index){
+                                  return Column(
                                     children: [
-                                      Text(
-                                        'Car shop name',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
+                                      Container(
+                                          height: 250,
+                                          padding: const EdgeInsets.all(0),
+                                          margin: const EdgeInsets.only(top: 50),
+                                          width: MediaQuery.of(context).size.width,
+                                          color: Colors.white,
+                                          child: PageView(
+                                            scrollDirection: Axis.horizontal,
+                                            children: <Widget>[
+                                              MyParts(
+                                                  "https://cdn.pixabay.com/photo/2021/02/05/21/04/tail-lights-5985913__340.jpg",
+                                                  ""),
+                                              MyParts(
+                                                  "https://cdn.pixabay.com/photo/2021/01/14/03/52/gold-5915713__340.png",
+                                                  ""),
+                                              MyParts(
+                                                  "https://cdn.pixabay.com/photo/2015/03/18/19/42/auto-679874__340.jpg",
+                                                  ""),
+                                            ],
+                                          )),
+                                      SizedBox(
+                                        height: 15,
                                       ),
-                                      Text(
-                                        'shop location',
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w400),
+                                      Container(
+                                        padding: const EdgeInsets.only(left: 15, right: 15),
+                                        width: MediaQuery.of(context).size.width,
+                                        color: Colors.white,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Item name',
+                                              style: TextStyle(
+                                                  fontSize: 22,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              '12',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ],
-                                  ),
-                                  Icon(Icons.mode_comment)
-                                ],
-                              )),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          Container(
-                              width: MediaQuery.of(context).size.width - 30,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  InkWell(
-                                      onTap: () {
-                                        showModalBottomSheet(
-                                            context: context,
-                                            builder: (context) {
-                                              return Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                children: <Widget>[
-                                                  ListTile(
-                                                    leading:
-                                                        new Icon(Icons.photo),
-                                                    title: new Text('Photo'),
-                                                    onTap: () {
-                                                      Navigator.pop(context);
-                                                    },
+                                      SizedBox(
+                                        height: 15,
+                                      ),
+                                      Container(
+                                        padding: const EdgeInsets.only(left: 15, right: 15),
+                                        width: MediaQuery.of(context).size.width,
+                                        color: Colors.white,
+                                        height: 150,
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'Description',
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                            SizedBox(
+                                              height: 5,
+                                            ),
+                                            Text(
+                                              'hkasgf balhbf kshdkfvbh dvjn djfs jnkljfvh ndf;kljv nsk;l hjdfk bgxjlbh kjdd dgbs dfkjbn ',
+                                              style: TextStyle(fontSize: 16),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Container(
+                                          margin:
+                                          const EdgeInsets.only(left: 15, right: 15),
+                                          width: MediaQuery.of(context).size.width - 30,
+                                          padding: const EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius: BorderRadius.circular(5),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.grey.withOpacity(0.5),
+                                                spreadRadius: 3,
+                                                blurRadius: 4,
+                                                offset: Offset(
+                                                    1, 2), // changes position of shadow
+                                              ),
+                                            ],
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    'Car shop name',
+                                                    style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.bold),
                                                   ),
-                                                  ListTile(
-                                                    leading: new Icon(
-                                                        Icons.music_note),
-                                                    title: new Text('Music'),
-                                                    onTap: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                  ),
-                                                  ListTile(
-                                                    leading: new Icon(
-                                                        Icons.videocam),
-                                                    title: new Text('Video'),
-                                                    onTap: () {
-                                                      Navigator.pop(context);
-                                                    },
-                                                  ),
-                                                  ListTile(
-                                                    leading:
-                                                        new Icon(Icons.share),
-                                                    title: new Text('Share'),
-                                                    onTap: () {
-                                                      Navigator.pop(context);
-                                                    },
+                                                  Text(
+                                                    'shop location',
+                                                    style: TextStyle(
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.w400),
                                                   ),
                                                 ],
-                                              );
-                                            });
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          color: Colors.black,
-                                        ),
-                                        width:
-                                            MediaQuery.of(context).size.width -
-                                                90,
-                                        alignment: Alignment.center,
-                                        padding: const EdgeInsets.only(
-                                            top: 15, bottom: 15),
-                                        child: const Text(
-                                          'Add To Cart',
-                                          style: TextStyle(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      )),
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 2.5, right: 5),
-                                    child: Icon(Icons.favorite, size: 40),
-                                  )
-                                ],
-                              )),
-                        ],
+                                              ),
+                                              Icon(Icons.mode_comment)
+                                            ],
+                                          )),
+                                      SizedBox(
+                                        height: 30,
+                                      ),
+                                      Container(
+                                          width: MediaQuery.of(context).size.width - 30,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              InkWell(
+                                                  onTap: () {
+                                                    showModalBottomSheet(
+                                                        context: context,
+                                                        builder: (context) {
+                                                          return Column(
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            children: <Widget>[
+                                                              ListTile(
+                                                                leading:
+                                                                new Icon(Icons.photo),
+                                                                title: new Text('Photo'),
+                                                                onTap: () {
+                                                                  Navigator.pop(context);
+                                                                },
+                                                              ),
+                                                              ListTile(
+                                                                leading: new Icon(
+                                                                    Icons.music_note),
+                                                                title: new Text('Music'),
+                                                                onTap: () {
+                                                                  Navigator.pop(context);
+                                                                },
+                                                              ),
+                                                              ListTile(
+                                                                leading: new Icon(
+                                                                    Icons.videocam),
+                                                                title: new Text('Video'),
+                                                                onTap: () {
+                                                                  Navigator.pop(context);
+                                                                },
+                                                              ),
+                                                              ListTile(
+                                                                leading:
+                                                                new Icon(Icons.share),
+                                                                title: new Text('Share'),
+                                                                onTap: () {
+                                                                  Navigator.pop(context);
+                                                                },
+                                                              ),
+                                                            ],
+                                                          );
+                                                        });
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                      BorderRadius.circular(5),
+                                                      color: Colors.black,
+                                                    ),
+                                                    width:
+                                                    MediaQuery.of(context).size.width -
+                                                        90,
+                                                    alignment: Alignment.center,
+                                                    padding: const EdgeInsets.only(
+                                                        top: 15, bottom: 15),
+                                                    child: const Text(
+                                                      'Add To Cart',
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: Colors.white),
+                                                    ),
+                                                  )),
+                                              const Padding(
+                                                padding:
+                                                EdgeInsets.only(top: 2.5, right: 5),
+                                                child: Icon(Icons.favorite, size: 40),
+                                              )
+                                            ],
+                                          )),
+                                    ],
+                                  );
+
+                                }
+                            );
+
+
+
+
+                          }
                       ),
+
+                      
+
                       Positioned(
                         top: 0,
                         left: 0,

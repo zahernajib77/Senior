@@ -230,6 +230,10 @@ class _loginpageState extends State<loginpage> {
                                           }
                                       })
                                           .then((value) =>
+
+
+
+
                                           Navigator.pushReplacement(
                                               context,
                                               MaterialPageRoute(
@@ -237,14 +241,10 @@ class _loginpageState extends State<loginpage> {
                                                       AccountPage())),
 
 
-                                     //    CupertinoAlertDialog(title: Text('login'),content: Text("Login succeful")),
 
 
                                       );
-                                      // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                      //   backgroundColor: Colors.black26,
-                                      //   content: Text('login successfuly!!!'),
-                                      // ));
+
 
 
 

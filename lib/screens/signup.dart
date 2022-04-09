@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:go2parts/screens/verifyemailpage.dart';
 import 'package:go2parts/screens/widgets/header_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -396,6 +397,7 @@ class _signuppageState extends State<signuppage> {
                                   ),
                                   onPressed: () {
 
+
                                     if (_formKey.currentState!.validate()) {
 
 
@@ -412,7 +414,7 @@ class _signuppageState extends State<signuppage> {
 
                                       Navigator.of(context).pushAndRemoveUntil(
                                           MaterialPageRoute(
-                                              builder: (context) => loginpage()
+                                              builder: (context) => verifyEmailPage()
                                           ),
                                               (Route<dynamic> route) => false
                                       )
