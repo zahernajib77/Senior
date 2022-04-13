@@ -227,7 +227,14 @@ class _HomepageState extends State<Homepage> with AutomaticKeepAliveClientMixin{
                                                 ],
                                               ),
                                               child: InkWell(
-                                                  onTap: () {
+                                                  onTap: () async {
+                                                    print("${snapshot.data!.docs[index]
+                                                        .data()['uid']}");
+                                                    await AutoParts.preferences!
+                                                        .setString("shopid",snapshot.data!.docs[index]
+                                                        .data()['uid']);
+
+
                                                     Navigator.push(
                                                       context,
                                                       MaterialPageRoute(
@@ -267,9 +274,9 @@ class _HomepageState extends State<Homepage> with AutomaticKeepAliveClientMixin{
                                                               CrossAxisAlignment.center,
                                                               children: [
                                                                 Text(
-                                                                    "Bahsas shop"
-                                                                    // snapshot.data!.docs[index]
-                                                                    //     .data()['shopname']
+                                                                    //"Bahsas shop"
+                                                                    snapshot.data!.docs[index]
+                                                                        .data()['shopname']
                                                                     ,
                                                                     style: TextStyle(
                                                                         fontSize: 20,
@@ -313,9 +320,9 @@ class _HomepageState extends State<Homepage> with AutomaticKeepAliveClientMixin{
                                                                   .spaceBetween,
                                                               children: [
                                                                 Text(
-                                                                    "Bahsas"
-                                                                  // snapshot.data!.docs[index]
-                                                                  //     .data()['Address']
+                                                                    //"Bahsas"
+                                                                  snapshot.data!.docs[index]
+                                                                      .data()['Address']
                                                                 ),
                                                               ],
                                                             ),
@@ -468,7 +475,7 @@ class _HomepageState extends State<Homepage> with AutomaticKeepAliveClientMixin{
                             color: Colors.grey,
                           ),
                           child: Text(
-                            'Ab',
+                            'AC',
                             style: TextStyle(color: Colors.white, fontSize: 14),
                           ),
                         ),
